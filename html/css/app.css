@@ -1,0 +1,93 @@
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    color: #404040;
+    font-family: Helvetica, arial, sans-serif;
+}
+
+body {
+    padding: 50px 20px;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+output {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.divRow {
+    width: auto;
+}
+
+.nestedDivRow {
+    width: 80%;
+}
+
+.buttonStyle {
+    width: 150px;
+    height: 27px;
+    text-align: center;
+    margin-right: 10px;
+    font-size: 18px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.submitButton {
+    margin-right: 0px;
+    float: right;
+}
+
+.u-left {
+    float: left;
+}
+
+.u-cf:before,
+.u-cf:after {
+    content: "";
+    display: table;
+}
+
+.u-cf:after {
+    clear: both;
+}
+
+.u-text-left {
+    text-align: left;
+}
+
+.checkboxStyle {
+    width: 80%;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    display: none;
+}
+
+.colorSelector {
+    width: auto;
+    display: inherit;
+}
+
+.radioList {
+    font-size: 18px;
+}
+
+.logoImage {
+    max-width: none;
+}
+
+.activeVisTitle {
+    color: #aa0044;
+}

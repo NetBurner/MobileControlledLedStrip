@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LED Lightstrip</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/rangeslider.css">
+    <link rel="stylesheet" href="./css/app.css">
+
+    <script src="./js/jquery-3.2.0.min.js"></script>
+    <script src="./js/rangeslider.min.js"></script>
+    <script src="./js/colorSlider.js"></script>
+</head>
+<body>
+    <img src="images/netburner-logo.gif" class="logoImage">
+    <h1>LED Light Strip Example</h1>
+    <form id="LedForm" action="LedForm" method=post>
+        <div>
+            <h3>Current Visualization: <span class="activeVisTitle"><!--FUNCTIONCALL GetCurrentVisualization --></span></h3>
+            <div class="divRow radioList">
+                <input type="radio" class="selectVis" name="visualization" value="knightRider" checked>Knight Rider<br>
+                <input type="radio" class="selectVis" name="visualization" value="twinkle">Twinkle<br>
+                <input type="radio" class="selectVis" name="visualization" value="bitCounter">Bit Counter<br>
+                <input id="set_color" class="buttonStyle submitButton" type="button" value="Set Animation" onclick="UpdateColorValues()" />
+                
+                <input type="radio" class="selectVis" name="visualization" value="pulse">Pulse<br>
+                <input type="radio" class="selectVis" name="visualization" value="colorChange">Color Change<br>
+                <input type="radio" class="selectVis" name="visualization" value="colorWave">Color Wave<br>
+                <!--
+                     The code commented out here will allow you to change the color specific LEDs.  It is generally not mobile
+                     friendly, so has been removed, but can be put back in by uncommenting the code below. 
+                -->
+                <!--<input type="radio" class="selectVis" name="visualization" value="default">Set LEDs<br>
+                <div class="nestedDivRow checkboxStyle">
+                    <h4>LEDs to Change</h4>
+                    <div>
+                        01<input type="checkbox" id="led_01" name="led_01" value="01" />
+                        02<input type="checkbox" id="led_02" name="led_02" value="02" />
+                        03<input type="checkbox" id="led_03" name="led_03" value="03" />
+                        04<input type="checkbox" id="led_04" name="led_04" value="04" />
+                        05<input type="checkbox" id="led_05" name="led_05" value="05" />
+                        06<input type="checkbox" id="led_06" name="led_06" value="06" />
+                        07<input type="checkbox" id="led_07" name="led_07" value="07" />
+                        08<input type="checkbox" id="led_08" name="led_08" value="08" />
+                        09<input type="checkbox" id="led_09" name="led_09" value="09" />
+                        10<input type="checkbox" id="led_10" name="led_10" value="10" />
+                        11<input type="checkbox" id="led_11" name="led_11" value="11" />
+                        12<input type="checkbox" id="led_12" name="led_12" value="12" />
+                        13<input type="checkbox" id="led_13" name="led_13" value="13" />
+                        14<input type="checkbox" id="led_14" name="led_14" value="14" />
+                        15<input type="checkbox" id="led_15" name="led_15" value="15" />
+                        16<input type="checkbox" id="led_16" name="led_16" value="16" />
+                    </div>
+                    <br />
+                    <div>
+                        17<input type="checkbox" id="led_17" name="led_17" value="17" />
+                        18<input type="checkbox" id="led_18" name="led_18" value="18" />
+                        19<input type="checkbox" id="led_19" name="led_19" value="19" />
+                        20<input type="checkbox" id="led_20" name="led_20" value="20" />
+                        21<input type="checkbox" id="led_21" name="led_21" value="21" />
+                        22<input type="checkbox" id="led_22" name="led_22" value="22" />
+                        23<input type="checkbox" id="led_23" name="led_23" value="23" />
+                        24<input type="checkbox" id="led_24" name="led_24" value="24" />
+                        25<input type="checkbox" id="led_25" name="led_25" value="25" />
+                        26<input type="checkbox" id="led_26" name="led_26" value="26" />
+                        27<input type="checkbox" id="led_27" name="led_27" value="27" />
+                        28<input type="checkbox" id="led_28" name="led_28" value="28" />
+                        29<input type="checkbox" id="led_29" name="led_29" value="29" />
+                        30<input type="checkbox" id="led_30" name="led_30" value="30" />
+                        31<input type="checkbox" id="led_31" name="led_31" value="31" />
+                        32<input type="checkbox" id="led_32" name="led_32" value="32" />
+                    </div>
+                    <br />
+                    <div>
+                        33<input type="checkbox" id="led_33" name="led_33" value="33" />
+                        34<input type="checkbox" id="led_34" name="led_34" value="34" />
+                        35<input type="checkbox" id="led_35" name="led_35" value="35" />
+                        36<input type="checkbox" id="led_36" name="led_36" value="36" />
+                        37<input type="checkbox" id="led_37" name="led_37" value="37" />
+                        38<input type="checkbox" id="led_38" name="led_38" value="38" />
+                        39<input type="checkbox" id="led_39" name="led_39" value="39" />
+                        40<input type="checkbox" id="led_40" name="led_40" value="40" />
+                        41<input type="checkbox" id="led_41" name="led_41" value="41" />
+                        42<input type="checkbox" id="led_42" name="led_42" value="42" />
+                        43<input type="checkbox" id="led_43" name="led_43" value="43" />
+                        44<input type="checkbox" id="led_44" name="led_44" value="44" />
+                        45<input type="checkbox" id="led_45" name="led_45" value="45" />
+                        46<input type="checkbox" id="led_46" name="led_46" value="46" />
+                        47<input type="checkbox" id="led_47" name="led_47" value="47" />
+                        48<input type="checkbox" id="led_48" name="led_48" value="48" />
+                    </div>
+                    <br />
+                    <div>
+                        49<input type="checkbox" id="led_49" name="led_49" value="49" />
+                        50<input type="checkbox" id="led_50" name="led_50" value="50" />
+                        51<input type="checkbox" id="led_51" name="led_51" value="51" />
+                        52<input type="checkbox" id="led_52" name="led_52" value="52" />
+                        53<input type="checkbox" id="led_53" name="led_53" value="53" />
+                        54<input type="checkbox" id="led_54" name="led_54" value="54" />
+                        55<input type="checkbox" id="led_55" name="led_55" value="55" />
+                        56<input type="checkbox" id="led_56" name="led_56" value="56" />
+                        57<input type="checkbox" id="led_57" name="led_57" value="57" />
+                        58<input type="checkbox" id="led_58" name="led_58" value="58" />
+                        59<input type="checkbox" id="led_59" name="led_59" value="59" />
+                        60<input type="checkbox" id="led_60" name="led_60" value="60" />
+                        61<input type="checkbox" id="led_61" name="led_61" value="61" />
+                        62<input type="checkbox" id="led_62" name="led_62" value="62" />
+                        63<input type="checkbox" id="led_63" name="led_63" value="63" />
+                        64<input type="checkbox" id="led_64" name="led_64" value="64" />
+                    </div>
+                    <input id="check_all" class="buttonStyle" type="button" value="Check All" onclick="CheckAll( true )"/>
+                    <input id="uncheck_all" class="buttonStyle" type="button" value="Uncheck All" onclick="CheckAll( false )" />
+                    <input id="invert_all" class="buttonStyle" type="button" value="Invert All" onclick="Invert()" />
+                </div> -->
+            </div>
+        </div>
+        <div class="divRow colorSelector">
+            <h2>Red LED</h2>
+            <div>
+                <input id="red_slider" name="red_slider" type="range" min="0" max="1" step="0.001" value="<!--FUNCTIONCALL GetRedLedValue -->" oninput="SetRedValue()" data-rangeslider>
+                <output></output>
+            </div>
+            <h2>Green LED</h2>
+            <div>
+                <input id="green_slider" name="green_slider" type="range" min="0" max="1" step="0.001" value="<!--FUNCTIONCALL GetGreenLedValue -->" oninput="SetGreenValue()" data-rangeslider>
+                <output></output>
+            </div>
+            <h2>Blue LED</h2>
+            <div>
+                <input id="blue_slider" name="blue_slider" type="range" min="0" max="1" step="0.001" value="<!--FUNCTIONCALL GetBlueLedValue -->" oninput="SetBlueValue()" data-rangeslider>
+                <output></output>
+            </div>
+        </div>
+    </form>
+
+    <script>
+
+        // GetLedChecked(), SetLedChecked(), CheckAll(), Invert(), and CheckLed() are all used for setting individual LEDs.  The HTML that
+        // presents this to the user is commented out above by default, but can be turned back on by uncommenting it.
+        function GetLedChecked()
+        {
+            GetLedChecked.ledChecked1 = parseInt( <!--VARIABLE gLedChecked1 --> );
+            GetLedChecked.ledChecked2 = parseInt( <!--VARIABLE gLedChecked2 --> );
+        }
+
+        // This example is set up to handle an LED strip with 64 lights.  The variables below represent a bit field where each bit determines
+        // if an LED is selected or not, and establishes concurrency between the page and the server.
+        GetLedChecked.ledChecked1 = 0X00000000;
+        GetLedChecked.ledChecked2 = 0X00000000;
+
+        function SetLedChecked()
+        {
+            for( var index = 0; index < 64; index++ )
+            {
+                var toCheck = 0;
+                toCheck = 1 << index;
+                var ledChecked = ( index < 32 ) ? GetLedChecked.ledChecked1 : GetLedChecked.ledChecked2;
+                CheckLed( index, ( ledChecked & toCheck ) );
+            }
+        }
+
+        function CheckAll( check )
+        {
+            for( var index = 0; index < 64; index++ )
+            {
+                CheckLed( index, check );
+            }
+        }
+
+        function Invert()
+        {
+            for( var index = 0; index < 64; index++ )
+            {
+                var ledName = "#led_";
+                ledName += ( index < 9 ) ? "0" + ( index + 1 ) : ( index + 1 );
+                var $element = $(ledName);
+                $element.prop( 'checked', !$element.prop( 'checked' ) );
+            }
+        }
+
+        function CheckLed( index, check )
+        {
+            var ledName = "#led_";
+            ledName += ( index < 9 ) ? "0" + ( index + 1 ) : ( index + 1 );
+            var $element = $(ledName);
+            $element.prop( 'checked', check );
+        }
+
+        function UpdateColorValues()
+        {
+            document.forms["LedForm"].submit();
+        }
+
+        function SendUpdateRequest( update, id, data )
+        {
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", update, true);
+            xmlhttp.send( id + "=" + data );
+        }
+
+        function SetRedValue()
+        {
+            SendUpdateRequest( "SetRedValue", "red_slider", $( "#red_slider" ).val() );
+        }
+
+        function SetGreenValue()
+        {
+            SendUpdateRequest( "SetGreenValue", "green_slider", $( "#green_slider" ).val() );
+        }
+
+        function SetBlueValue()
+        {
+            SendUpdateRequest( "SetBlueValue", "blue_slider", $( "#blue_slider" ).val() );
+        }
+
+        $( ".selectVis" ).change(function()
+        {
+            switch( $( this ).val() )
+            {
+                case 'knightRider':
+                case 'twinkle':
+                case 'bitCounter':
+                case 'pulse':
+                    $(".colorSelector").css( "display", "inherit" );
+                    $(".checkboxStyle").css( "display", "none" );
+                    break;
+                case 'colorChange':
+                case 'colorWave':
+                    $(".colorSelector").css( "display", "none" );
+                    $(".checkboxStyle").css( "display", "none" );
+                    break;
+                case 'default':
+                    $(".colorSelector").css( "display", "inherit" );
+                    $(".checkboxStyle").css( "display", "inherit" );
+                    break;
+                default:
+                    $(".checkboxStyle").css( "display", "none" );
+                    break;
+            }            
+        });
+
+        function adjustForMobile()
+        {
+            if( detectMobile() )
+            {
+                $( "h1" ).css( "font-size", "1.5em" );
+                $( "h1" ).css( "margin", "12px 0px" );
+                $( "h2" ).css( "font-size", "1.25em" );
+                $( "h2" ).css( "margin", "10px 0px" );
+                $( "output" ).css( "margin", "10px 0px" );
+                $( "output" ).css( "font-size", "18px" );
+                $( "body" ).css( "padding", "10px 20px 30px 20px" );
+                $( ".logoImage" ).css( "max-width", "40%" );
+                $( ".rangeslider__handle" ).css( "width", "30px" );
+                $( ".rangeslider__handle" ).css( "height", "30px" );
+            }
+        }
+
+        function detectMobile()
+        { 
+            return ( navigator.userAgent.match(/Android/i)
+                || navigator.userAgent.match(/webOS/i)
+                || navigator.userAgent.match(/iPhone/i)
+                || navigator.userAgent.match(/iPad/i)
+                || navigator.userAgent.match(/iPod/i)
+                || navigator.userAgent.match(/BlackBerry/i)
+                || navigator.userAgent.match(/Windows Phone/i) );
+        }
+
+        adjustForMobile(); 
+        GetLedChecked();
+        SetLedChecked();
+    </script>
+</body>
+</html>
